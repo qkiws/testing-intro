@@ -42,20 +42,23 @@ describe("sortProductsByPrice", () => {
   });
 
   test("'asc' не меняет исходный массив [1, 3, 4]", () => {
-    const catalog = [products[1], products[3], products[4]];
-    sortProductsByPrice(catalog, "asc");
-    expect(catalog).toEqual([products[1], products[3], products[4]]);
+    const items = [1, 3, 4].map((id) => products.find((product) => product.id === id));
+    const result = sortProductsByPrice(items, 'asc');
+    const ids = items.map((product) => product.id);
+    expect(ids).toEqual([1, 3, 4]);
   });
 
   test("'desc' не меняет исходный массив [1, 3, 4]", () => {
-    const catalog = [products[1], products[3], products[4]];
-    sortProductsByPrice(catalog, "desc");
-    expect(catalog).toEqual([products[1], products[3], products[4]]);
+    const items = [1, 3, 4].map((id) => products.find((product) => product.id === id));
+    const result = sortProductsByPrice(items, 'desc');
+    const ids = items.map((product) => product.id);
+    expect(ids).toEqual([1, 3, 4]);
   });
 
-  test("направление по умолчанию не меняет исходный массив всех товаров", () => {
-    const catalog = [products[1], products[3], products[4]];
-    sortProductsByPrice(catalog);
-    expect(catalog).toEqual([products[1], products[3], products[4]]);
+  test('направление по умолчанию не меняет исходный массив всех товаров', () => {
+    const items = [1, 2, 3, 4, 5, 6].map((id) => products.find((product) => product.id === id));
+    const result = sortProductsByPrice(items);
+    const ids = items.map((product) => product.id);
+    expect(ids).toEqual([1, 2, 3, 4, 5, 6]);
   });
 });
